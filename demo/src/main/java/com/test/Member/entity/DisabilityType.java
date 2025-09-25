@@ -1,7 +1,6 @@
 package com.test.Member.entity;
 
 import com.test.Member.exception.DisabilityTypeValidCheck;
-
 import com.test.common.validation.ValueEnum;
 
 import java.util.Arrays;
@@ -9,13 +8,23 @@ import java.util.Arrays;
 public enum DisabilityType implements ValueEnum<String> {
 
     없음("없음"),
+    지체장애("지체장애"),
     시각장애("시각장애"),
     청각장애("청각장애"),
     지적장애("지적장애"),
-    지체장애("지체장애"),
-    자폐성장애("자폐성장애"),
+    정신장애("정신장애"),
     뇌병변장애("뇌병변장애"),
-    정신장애("정신장애");
+    신장장애("신장장애"),
+    뇌전증장애("뇌전증장애"),
+    자폐성장애("자폐성장애"),
+    국가유공("국가유공"),
+    언어장애("언어장애"),
+    심장장애("심장장애"),
+    호흡기장애("호흡기장애"),
+    장루요루장애("장루요루장애"),
+    간장애("간장애"),
+    안면장애("안면장애"),
+    기타("기타");
 
     private final String value;
 
@@ -25,13 +34,13 @@ public enum DisabilityType implements ValueEnum<String> {
 
     @Override
     public String getValue() {
-        return null;
+        return value;
     }
 
-    public static DisabilityType disFromValue(String value){
+    public static DisabilityType disFromValue(String value) {
         return Arrays.stream(DisabilityType.values())
-                .filter(ft -> ft.getValue().equals(value))
+                .filter(d -> d.getValue().equals(value))
                 .findFirst()
-                .orElseThrow(()->DisabilityTypeValidCheck.bussinessException);
+                .orElseThrow(() -> DisabilityTypeValidCheck.bussinessException);
     }
 }

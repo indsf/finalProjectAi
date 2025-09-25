@@ -1,14 +1,37 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>홈</title>
+    <style>
+        .nav { margin-bottom: 20px; }
+        .nav a { margin-right: 10px; }
+    </style>
+</head>
 <body>
 <div class="container">
     <div>
         <h1>Hello Spring</h1>
         <p>회원 기능</p>
-        <p>
-            <a href="/members/new">회원 가입</a>
-            <a href="/members">회원 목록</a>
-        </p>
+
+        <div class="nav">
+            <!-- 로그인 안 된 경우 -->
+            <span th:if="${session.loginUser == null}">
+                <a href="/api/user/signup">회원가입</a>
+                <a href="/api/user/login">로그인</a>
+            </span>
+
+            <!-- 로그인 된 경우 -->
+            <span th:if="${session.loginUser != null}">
+                <span th:text="'환영합니다, ' + ${session.loginUser.name} + '님!'"></span>
+                <a href="/api/user/logout">로그아웃</a>
+            </span>
+
+            <!-- 프로필 버튼 -->
+            <a th:href="@{${session.loginUser != null} ? '/api/user/profile' : '/api/user/login?msg=로그인후이용가능'}">
+                프로필 보기
+            </a>
+        </div>
     </div>
 </div> <!-- /container -->
 </body>

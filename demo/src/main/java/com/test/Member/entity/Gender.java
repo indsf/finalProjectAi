@@ -3,18 +3,17 @@ package com.test.Member.entity;
 import com.test.common.validation.ValueEnum;
 
 public enum Gender implements ValueEnum<String> {
-    남성("MALE"),
-    여성("FEMALE");
+    남성("남성"),
+    여성("여성");
 
-    private String value;
+    private final String dbValue;
 
-    Gender(String value) {
-        this.value = value;
+    Gender(String dbValue) {
+        this.dbValue = dbValue;
     }
-
 
     @Override
     public String getValue() {
-        return value;
+        return dbValue;
     }
 }

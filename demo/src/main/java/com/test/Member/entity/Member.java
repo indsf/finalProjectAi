@@ -1,5 +1,7 @@
 package com.test.Member.entity;
 
+import com.test.Member.dto.JoinDto;
+import com.test.Member.dto.NaverJoinDto;
 import com.test.common.persistance.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -7,6 +9,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -42,6 +46,12 @@ public class Member extends BaseEntity {
     @ColumnDefault("'USER'")
     private Role role;
 
+    @Column(name = "reported_count")
+    private Long reportedCount = 0L;
+
+    @Column(name = "is_black_listed")
+    private Boolean isBlackListed = false;
+
     @Builder
     public Member(String name, String nickname, String profileImageUrl, String email,
                   Integer age, DisabilityType disabilityType, Gender gender,
@@ -55,6 +65,28 @@ public class Member extends BaseEntity {
         this.gender = gender;
         this.role = role;
         this.password = password;
+    }
+
+    public void updateMember(NaverJoinDto joinDto) {
+        this.name = joinDto.getName();
+        this.nickname = joinDto.getNickname();
+        this.gender = joinDto.getGender();
+        this.age = joinDto.getAge();
+        this.role = joinDto.getRole();
+        this.disabilityType = joinDto.getDisabilityType();
+    }
+
+    public static Member createMember(JoinDto joinDto) {
+        return Member.builder()
+                .name(joinDto.getName())
+                .nickname(joinDto.getNickname())
+                .email(joinDto.getEmail())
+                .password(joinDto.getPassword())
+                .gender(joinDto.getGender())
+                .age(joinDto.getAge())
+                .role(joinDto.getRole())  // 필드명 통일
+                .disabilityType(joinDto.getDisabilityType())
+                .build();
     }
     public void updateMember(String nickname,String disabilityType){
         this.nickname = nickname;

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/heart_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/my_database?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
-    password: "admin"
+    password: "Rlaengks623817!"
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -40,3 +40,10 @@ springdoc:
     path: /practice-ui.html
     tags-sorter: alpha
     operations-sorter: alpha
+
+# Naver OAuth 설정
+  naver:
+    client-id: o99zS6BGNfRQCh3PKSzz
+    client-secret: 2FhgK6bpyR
+    redirect-uri: http://localhost:8080/api/user/naver/callback
+    request-token-uri: https://nid.naver.com/oauth2.0/token
