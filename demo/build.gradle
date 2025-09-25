@@ -36,6 +36,15 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+
+	implementation "org.springframework.boot:spring-boot-starter-webflux"   // WebClient
+	implementation "org.springframework.boot:spring-boot-starter-validation"
+	implementation "org.springframework.boot:spring-boot-starter-actuator"
+	implementation "io.github.resilience4j:resilience4j-spring-boot3" // application.yml 쉽게 설정
+	implementation "io.github.resilience4j:resilience4j-reactor"
+
+	implementation "com.fasterxml.jackson.core:jackson-databind"
+	implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml" // XML 파싱
 }
 
 tasks.named('test') {
